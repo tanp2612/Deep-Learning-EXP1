@@ -1,0 +1,95 @@
+TensorFlow methods along with their syntax:
+
+1. Creating Tensors:
+   - `tf.constant(value, dtype=None, shape=None, name=None)`: Creates a constant tensor with a given value and data type.
+     ```python
+     import tensorflow as tf
+     
+     tensor = tf.constant([1, 2, 3], dtype=tf.float32)
+     ```
+
+2. Mathematical Operations:
+   - `tf.add(x, y)`: Element-wise addition of tensors `x` and `y`.
+     ```python
+     result = tf.add(tensor1, tensor2)
+     ```
+   - `tf.subtract(x, y)`: Element-wise subtraction of tensors `x` and `y`.
+     ```python
+     result = tf.subtract(tensor1, tensor2)
+     ```
+   - `tf.multiply(x, y)`: Element-wise multiplication of tensors `x` and `y`.
+     ```python
+     result = tf.multiply(tensor1, tensor2)
+     ```
+   - `tf.divide(x, y)`: Element-wise division of tensors `x` and `y`.
+     ```python
+     result = tf.divide(tensor1, tensor2)
+     ```
+
+3. Matrix Operations:
+   - `tf.matmul(a, b)`: Matrix multiplication of tensors `a` and `b`.
+     ```python
+     result = tf.matmul(matrix1, matrix2)
+     ```
+
+4. Reduction Operations:
+   - `tf.reduce_sum(input_tensor, axis=None, keepdims=False)`: Computes the sum of tensor elements along the specified axis.
+     ```python
+     total_sum = tf.reduce_sum(tensor, axis=0)
+     ```
+   - `tf.reduce_mean(input_tensor, axis=None, keepdims=False)`: Computes the mean of tensor elements along the specified axis.
+     ```python
+     mean_value = tf.reduce_mean(tensor, axis=0)
+     ```
+   - `tf.reduce_max(input_tensor, axis=None, keepdims=False)`: Computes the maximum value of tensor elements along the specified axis.
+     ```python
+     max_value = tf.reduce_max(tensor, axis=0)
+     ```
+   - `tf.reduce_min(input_tensor, axis=None, keepdims=False)`: Computes the minimum value of tensor elements along the specified axis.
+     ```python
+     min_value = tf.reduce_min(tensor, axis=0)
+     ```
+
+5. Activation Functions:
+   - `tf.nn.relu(features)`: Rectified Linear Unit (ReLU) activation function.
+     ```python
+     activated = tf.nn.relu(input_tensor)
+     ```
+   - `tf.nn.sigmoid(x)`: Sigmoid activation function.
+     ```python
+     activated = tf.nn.sigmoid(input_tensor)
+     ```
+   - `tf.nn.softmax(logits, axis=None)`: Softmax activation function.
+     ```python
+     probabilities = tf.nn.softmax(logits)
+     ```
+
+6. Neural Network Layers:
+   - `tf.keras.layers.Dense(units, activation=None)`: Fully connected (dense) layer with the specified number of units and activation function.
+     ```python
+     dense_layer = tf.keras.layers.Dense(units=64, activation='relu')
+     ```
+
+7. Optimizers:
+   - `tf.keras.optimizers.SGD(learning_rate)`: Stochastic Gradient Descent (SGD) optimizer.
+     ```python
+     optimizer = tf.keras.optimizers.SGD(learning_rate=0.01)
+     ```
+
+8. Model Compilation and Training:
+   ```python
+   model.compile(optimizer='sgd', loss='mean_squared_error', metrics=['accuracy'])
+   model.fit(x_train, y_train, epochs=10, batch_size=32)
+   ```
+
+9. Loading and Saving Models:
+   - `tf.keras.models.load_model(filepath)`: Loads a Keras model from a file.
+     ```python
+     model = tf.keras.models.load_model('model.h5')
+     ```
+   - `model.save(filepath)`: Saves a Keras model to a file.
+     ```python
+     model.save('model.h5')
+     ```
+
+These are just some of the many methods available in TensorFlow. TensorFlow is a powerful library with a wide range of functionalities for building and training deep learning models.

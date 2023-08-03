@@ -1,0 +1,93 @@
+common methods available in Keras
+
+1. **Model Creation and Compilation:**
+   - `keras.models.Sequential()`: Creates a sequential model.
+     ```python
+     model = keras.models.Sequential()
+     ```
+   - `model.compile(optimizer, loss, metrics)`: Compiles the model with the specified optimizer, loss function, and evaluation metrics.
+     ```python
+     model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
+     ```
+
+2. **Adding Layers:**
+   - `model.add(layer)`: Adds a layer to the model.
+     ```python
+     model.add(keras.layers.Dense(units=64, activation='relu'))
+     ```
+
+3. **Training:**
+   - `model.fit(x, y, epochs, batch_size)`: Trains the model on the given data for a specified number of epochs and batch size.
+     ```python
+     model.fit(x_train, y_train, epochs=10, batch_size=32)
+     ```
+
+4. **Model Evaluation:**
+   - `model.evaluate(x, y)`: Evaluates the model on the given data and returns the loss and metrics values.
+     ```python
+     loss, accuracy = model.evaluate(x_test, y_test)
+     ```
+
+5. **Model Prediction:**
+   - `model.predict(x)`: Generates predictions for the input data.
+     ```python
+     predictions = model.predict(x_new_data)
+     ```
+
+6. **Saving and Loading Models:**
+   - `model.save(filepath)`: Saves the model's architecture, weights, and optimizer state to a file.
+     ```python
+     model.save('model.h5')
+     ```
+   - `keras.models.load_model(filepath)`: Loads a saved model from a file.
+     ```python
+     model = keras.models.load_model('model.h5')
+     ```
+
+7. **Callbacks:**
+   - Callbacks are functions that can be used to customize the behavior of the training process. They can be passed to the `fit()` method.
+   - Example: EarlyStopping callback to stop training if a monitored metric has stopped improving.
+     ```python
+     early_stopping = keras.callbacks.EarlyStopping(monitor='val_loss', patience=3)
+     model.fit(x_train, y_train, epochs=50, batch_size=32, callbacks=[early_stopping])
+     ```
+
+8. **Data Preprocessing:**
+   - `keras.preprocessing.image.ImageDataGenerator()`: Generates batches of augmented data for image classification tasks.
+     ```python
+     datagen = keras.preprocessing.image.ImageDataGenerator(rescale=1.0/255.0)
+     ```
+
+9. **Regularization:**
+   - `keras.layers.Dropout(rate)`: Applies dropout regularization to a layer.
+     ```python
+     model.add(keras.layers.Dropout(0.2))
+     ```
+
+10. **Functional API:**
+    - Keras also supports the functional API for creating more complex models with multiple inputs and outputs, shared layers, etc.
+    ```python
+    input_layer = keras.layers.Input(shape=(input_shape,))
+    hidden_layer = keras.layers.Dense(64, activation='relu')(input_layer)
+    output_layer = keras.layers.Dense(num_classes, activation='softmax')(hidden_layer)
+    model = keras.models.Model(inputs=input_layer, outputs=output_layer)
+    ```
+
+11. **Custom Layers and Models:**
+    - You can create custom layers and models by subclassing existing Keras classes.
+    ```python
+    class CustomLayer(keras.layers.Layer):
+        def __init__(self, units=32):
+            super(CustomLayer, self).__init__()
+            self.units = units
+    
+        def build(self, input_shape):
+            self.w = self.add_weight(shape=(input_shape[-1], self.units),
+                                     initializer='random_normal',
+                                     trainable=True)
+    
+        def call(self, inputs):
+            return tf.matmul(inputs, self.w)
+    
+    custom_layer = CustomLayer(units=64)
+    ```
